@@ -15,12 +15,12 @@ y = dataset.iloc[:, 3].values #dependent variable
 #Taking care of missing data
 #Importing "preprocessing" library from Scikit LearnImputer
 #   that contains the Imputer class
-from sklearn.preprocessing import Imputer
-imputer = Imputer(missing_values = 'NaN',
-                  strategy = 'mean', axis=0)
-imputer = imputer.fit(X[:, 1:3]) #fitting the imputer object on
-                                #column 1 & 2 of X.
-X[:, 1:3] = imputer.transform(X[:, 1:3]) #replaces missing data 
+from sklearn.impute import SimpleImputer
+imp_mean = SimpleImputer(missing_values = np.NaN,
+                  strategy = 'mean')
+imp_mean.fit(X[:, 1:3])             #fitting the imputer object on
+                                    #column 1 & 2 of X.
+X[:, 1:3] = imp_mean.transform(X[:, 1:3]) #replaces missing data 
                                         #with mean
 
                                         
